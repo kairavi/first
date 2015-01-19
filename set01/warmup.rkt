@@ -131,15 +131,15 @@
 ; string-insert : String Number -> String
 ; GIVEN: a string and a value for a position
 ; RETURNS: a new string with a "_" inserted at the given position
-; EXAMPLES: (string-insert "abcd" 3) -> "ab_cd"
+; EXAMPLES: (string-insert "abcd" 3) -> "abc_d"
 (define (string-insert str pos)
   (string-append
-   (substring str 0 (- pos 1))
+   (substring str 0 pos)
    "_"
-   (substring str (- pos 1))))
+   (substring str pos)))
 ; TESTS:
 (begin-for-test
-  (check-equal? (string-insert "abcd" 3) "ab_cd"))
+  (check-equal? (string-insert "abcd" 3) "abc_d"))
 
 ; Q22
 ; string-delete : String Number -> String
@@ -148,8 +148,8 @@
 ; EXAMPLES: (string-delete "abcd" 2) -> "acd"
 (define (string-delete str pos)
   (string-append
-   (substring str 0 (- pos 1))
-   (substring str pos)))
+   (substring str 0 pos)
+   (substring str (+ pos 1))))
 ; TESTS:
 (begin-for-test
-  (check-equal? (string-delete "abcd" 2) "acd"))
+  (check-equal? (string-delete "abcd" 2) "abd"))
